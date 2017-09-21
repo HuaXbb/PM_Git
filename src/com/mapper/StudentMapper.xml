@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.StudentMapper">
+
+	<resultMap type="student" id="stuMap">
+		<id column="sid" property="sid"/>
+		<result column="sname" property="sname"/>
+		<result column="addrId" property="addrId"/>
+		<association property="addr" javaType="addr">
+			<id column="addrId" property="aid"/>
+			<result column="addrName" property="addrName"/>
+		</association>
+	</resultMap>
+	
+
+	<select id="getStudent" parameterType="stuVo" resultMap="stuMap">
+		select s.*,a.addrName 
+		from student s,addr a
+		where s.addrId=a.aid
+		<if test="student!=null">
+			<if test="student.sid!=null and student.sid>0">
+				and s.sid=#{student.sid}
+			</if>
+			<if test="student.sname!=null and student.sname!=''">
+				and s.sname like '%${student.sname}%'
+			</if>
+			<if test="student.addrId!=null">
+				
+					and s.addrId=#{student.addrId}
+			</if>
+		</if>
+		<if test="beginLimit!=null">
+			limit #{beginLimit},#{PERPAGE}
+		</if>
+	</select>
+	
+	<select id="getAddr" resultType="addr">
+		select * from addr
+	</select>
+	<select id="getStudentTotal" parameterType="stuVo" resultType="long">
+		select count(s.sid)
+		from student s,addr a
+		where s.addrId=a.aid
+		<if test="student!=null">
+			<if test="student.sname!=null and student.sname!=''">
+				and s.sname like '%${student.sname}%'
+			</if>
+			<if test="student.addrId!=null">
+				
+					and s.addrId=#{student.addrId}
+			</if>
+		</if>
+	</select>
+	
+	<insert id="saveStudent" parameterType="Student">
+		insert into student(sname,addrId) values(#{sname},#{addrId})
+	</insert>
+	
+	<delete id="delete" parameterType="Student">
+		delete from student where sid=#{sid}
+	</delete>
+	
+	<update id="update" parameterType="student">
+		update student set sname=#{sname},addrId=#{addrId} where sid=#{sid}
+	</update>
+</mapper>

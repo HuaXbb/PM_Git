@@ -1,0 +1,64 @@
+.button_green{
+	background-color: #5CB85C;
+	color:#FFFFFF;
+	 border: 0px solid #0000ff;
+    border-radius:5px;
+    width:40px;
+	height:30px;
+}
+.button_green:HOVER{
+	
+	background-color: #83c983;
+}
+.button_or{
+	background-color: #F0AD4E;
+	color:#FFFFFF;
+	 border: 0px solid #0000ff;
+    border-radius:5px;
+    width:40px;
+	height:30px;
+}
+.button_or:HOVER{
+	
+	background-color: #ffba75;
+}
+form{
+	margin:0;
+	margin-bottom:25px;
+	display: inline;	
+}
+
+form .submit:HOVER{
+	
+	background-color: #438AD1;
+}
+
+form .submit{
+	background-color: #1A6EE5;
+	width:50px;
+	height:30px;
+	color:#FFFFFF;
+    border: 0px solid #0000ff;
+    border-radius:5px;            /* W3C syntax */
+  
+	
+}
+table th{
+	margin:0;
+	width:200px;
+	height:40px;
+	background-color:#C8C8C8; 
+	
+}
+
+table td{
+	height: 60px;
+
+}
+table{
+  border:0;
+  background-color:#FFC6FF; 
+  
+  
+  
+}
